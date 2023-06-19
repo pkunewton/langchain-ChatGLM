@@ -16,7 +16,7 @@ embedding_model_dict = {
     "ernie-tiny": "nghuyong/ernie-3.0-nano-zh",
     "ernie-base": "nghuyong/ernie-3.0-base-zh",
     "text2vec-base": "shibing624/text2vec-base-chinese",
-    "text2vec": "/kaggle/working/text2vec-large-chinese",
+    "text2vec": "/kaggle/working/langchain-chatGLM/text2vec-large-chinese",
     "m3e-small": "moka-ai/m3e-small",
     "m3e-base": "moka-ai/m3e-base",
 }
@@ -43,7 +43,7 @@ llm_model_dict = {
     "chatglm-6b-int4": {
         "name": "chatglm-6b-int4",
         "pretrained_model_name": "THUDM/chatglm-6b-int4",
-        "local_model_path": "/kaggle/working/chatglm-6b-int4",
+        "local_model_path": "/kaggle/working/langchain-chatGLM/chatglm-6b-int4",
         "provides": "ChatGLM"
     },
     "chatglm-6b-int8": {
