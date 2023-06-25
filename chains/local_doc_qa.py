@@ -244,7 +244,8 @@ class LocalDocQA:
         else:
             logger.info('answer with no docment')
             for i in range(7):
-                history = chat_history
+                history = chat_history[-LLM_HISTORY_LEN:-1] if LLM_HISTORY_LEN > 1 else []
+                history += [[query, "根据已有的信息没有相应的回答"[0:i*2 + 2]]]
                 response = {
                     "query": query,
                     "result": "根据已有的信息没有相应的回答"[0:i*2 + 2],
