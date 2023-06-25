@@ -18,6 +18,7 @@ from agent import bing_search
 from langchain.docstore.document import Document
 from functools import lru_cache
 from textsplitter.zh_title_enhance import zh_title_enhance
+import random
 
 
 # patch HuggingFaceEmbeddings to make it hashable
@@ -244,12 +245,12 @@ class LocalDocQA:
         else:
             logger.info('answer with no docment')
             history = chat_history
-            history += [[query, None]]
-            for i in range(7):
-                history[-1][1] = "根据已知信息，无法回答该问题"[0:i*2+2]
+            answers = ['很抱歉，没有有效的上下文信息，不能给回答', '根据已知的信息，无法回答该问题', '提问不能匹配到当前的知识库，无法给出有效的回答']
+            history += [[query, answers[random.randint(1, 3) - 1]]]
+            for i in range(1):
                 response = {
                     "query": query,
-                    "result": "根据已知信息，无法回答该问题"[0:i*2+2],
+                    "result": history[-1][1],
                     "source_documents": related_docs_with_score
                 }
                 yield response, history
