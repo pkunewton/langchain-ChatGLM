@@ -246,10 +246,10 @@ class LocalDocQA:
             history = chat_history
             history += [[query, None]]
             for i in range(7):
-                history[-1][1] = "根据已有的信息没有相应的回答"[0:i*2 + 2]
+                history[-1][1] = "根据已知信息，无法回答该问题"[0:i*2+2]
                 response = {
                     "query": query,
-                    "result": "根据已有的信息没有相应的回答"[0:i*2 + 2],
+                    "result": "根据已知信息，无法回答该问题"[0:i*2+2],
                     "source_documents": related_docs_with_score
                 }
                 yield response, history
