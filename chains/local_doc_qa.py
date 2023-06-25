@@ -242,11 +242,12 @@ class LocalDocQA:
                             "source_documents": related_docs_with_score}
                 yield response, history
         else:
-            for i in range(1):
+            logger.info('answer with no docment')
+            for i in range(7):
                 history = chat_history
                 response = {
                     "query": query,
-                    "result": "根据已有的信息没有相应的回答",
+                    "result": "根据已有的信息没有相应的回答"[0:i*2 + 2],
                     "source_documents": related_docs_with_score
                 }
                 yield response, history
