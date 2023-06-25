@@ -232,18 +232,24 @@ class LocalDocQA:
         torch_gc()
         if len(related_docs_with_score) > 0:
             prompt = generate_prompt(related_docs_with_score, query)
+            for answer_result in self.llm.generatorAnswer(prompt=prompt, history=chat_history,
+                                                        streaming=streaming):
+                resp = answer_result.llm_output["answer"]
+                history = answer_result.history
+                history[-1][0] = query
+                response = {"query": query,
+                            "result": resp,
+                            "source_documents": related_docs_with_score}
+                yield response, history
         else:
-            prompt = query
-
-        for answer_result in self.llm.generatorAnswer(prompt=prompt, history=chat_history,
-                                                      streaming=streaming):
-            resp = answer_result.llm_output["answer"]
-            history = answer_result.history
-            history[-1][0] = query
-            response = {"query": query,
-                        "result": resp,
-                        "source_documents": related_docs_with_score}
-            yield response, history
+            for i in range(1):
+                history = chat_history
+                response = {
+                    "query": query,
+                    "result": "根据已有的信息没有相应的回答",
+                    "source_documents": related_docs_with_score
+                }
+                yield response, history, i
 
     # query      查询内容
     # vs_path    知识库路径
