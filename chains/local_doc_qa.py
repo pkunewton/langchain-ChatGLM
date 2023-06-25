@@ -249,7 +249,7 @@ class LocalDocQA:
                     "result": "根据已有的信息没有相应的回答",
                     "source_documents": related_docs_with_score
                 }
-                yield response, history, i
+                yield response, history
 
     # query      查询内容
     # vs_path    知识库路径
