@@ -116,7 +116,7 @@ class FastChatOpenAILLM(RemoteRpcModel, LLM, ABC):
         try:
             import openai
             # Not support yet
-            openai.api_key = "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"
+            openai.api_key = ""
             openai.api_base = self.api_base_url
         except ImportError:
             raise ValueError(
