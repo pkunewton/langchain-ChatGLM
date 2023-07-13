@@ -93,7 +93,7 @@ llm_model_dict = {
         "pretrained_model_name": "gpt-3.5-turbo",
         "local_model_path": None,
         "provides": "FastChatOpenAILLM",  # 使用fastchat api时，需保证"provides"为"FastChatOpenAILLM"
-        "api_base_url": "http://api.openai.com/v1"  # "name"修改为fastchat服务中的"api_base_url"
+        "api_base_url": "https://api.openai.com/v1"  # "name"修改为fastchat服务中的"api_base_url"
     },
 }
 
